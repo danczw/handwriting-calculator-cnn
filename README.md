@@ -11,7 +11,9 @@ Dependencies are listed in *environment.yml*. The CNN is build using _[tensforfl
 * run `conda env create -f environment.yml`
 * activate env via `conda activate <env name>`
 
-# Usage
+---
+
+## Usage
 
 Run `python calculatorCNN.py` - a secondary GUI window should open up.
 
