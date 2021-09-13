@@ -36,25 +36,42 @@ img_size = (img_w, img_h, 1)
 pool_size = (2, 2)
 kernel_tupel = (3, 3)
 dropout_ratio = 0.25
+leaky_alpha = 0.3
 
 # define mode
 model = keras.models.Sequential()
 
-model.add(layers.Conv2D(32, kernel_tupel, activation='relu', input_shape=img_size))
-model.add(layers.MaxPooling2D(pool_size))
-model.add(layers.Dropout(dropout_ratio))
+model.add(layers.Conv2D(32, kernel_tupel, input_shape=img_size))
+model.add(layers.LeakyReLU(alpha=leaky_alpha))
+model.add(layers.BatchNormalization())
 
-model.add(layers.Conv2D(64, kernel_tupel, activation='relu', input_shape=img_size))
-model.add(layers.MaxPooling2D(pool_size))
-model.add(layers.Dropout(dropout_ratio))
+model.add(layers.Conv2D(32, kernel_tupel, input_shape=img_size))
+model.add(layers.LeakyReLU(alpha=leaky_alpha))
+model.add(layers.BatchNormalization())
 
-model.add(layers.Conv2D(128, kernel_tupel, activation='relu', input_shape=img_size))
+model.add(layers.Conv2D(32, kernel_tupel, input_shape=img_size))
+model.add(layers.LeakyReLU(alpha=leaky_alpha))
+model.add(layers.BatchNormalization())
 model.add(layers.MaxPooling2D(pool_size))
-model.add(layers.Dropout(dropout_ratio))
+model.add(layers.BatchNormalization())
+
+model.add(layers.Conv2D(64, kernel_tupel, input_shape=img_size))
+model.add(layers.LeakyReLU(alpha=leaky_alpha))
+model.add(layers.BatchNormalization())
+model.add(layers.MaxPooling2D(pool_size))
+model.add(layers.BatchNormalization())
+
+model.add(layers.Conv2D(128, kernel_tupel, input_shape=img_size))
+model.add(layers.LeakyReLU(alpha=leaky_alpha))
+model.add(layers.BatchNormalization())
+model.add(layers.MaxPooling2D(pool_size))
+model.add(layers.BatchNormalization())
 
 model.add(layers.Flatten())
 
-model.add(layers.Dense(128, activation='relu'))
+model.add(layers.Dense(128))
+model.add(layers.LeakyReLU(alpha=leaky_alpha))
+model.add(layers.BatchNormalization())
 model.add(layers.Dense(10, activation='softmax'))
 
 print(model.summary())
@@ -79,6 +96,8 @@ print('Test accuracy:', score[1])
 #------------------------------------------------------------------------------#
 #                            Handwriting Calculator                            #
 #------------------------------------------------------------------------------#
+
+# source: antaloaalonsa: https://github.com/antaloaalonso/CNN-With-GUI
 
 white = (255, 255, 255)
 black = (0, 0, 0)
@@ -109,7 +128,7 @@ digits=0
 def paint( event ):
     x1, y1 = ( event.x - 4 ), ( event.y - 4 )
     x2, y2 = ( event.x + 4 ), ( event.y + 4 )
-    w.create_oval( x1, y1, x2, y2, fill = 'red' )
+    w.create_oval( x1, y1, x2, y2, fill = 'black' )
     xpoints.append(x1)
     ypoints.append(y1)
     x2points.append(x2) 
