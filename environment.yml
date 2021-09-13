@@ -1,4 +1,4 @@
-name: calcCNNtest
+name: calcCNN
 channels:
   - conda-forge
   - anaconda
