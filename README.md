@@ -1,6 +1,6 @@
 # Handwriting Calculator using a CNN
 
-This small programm is recognizing handwriten digits and performs caluclations based on input using a Convolutional Neural Network.
+This small programm is recognizing handwriten digits and performs caluclations based on input using a optimized Convolutional Neural Network.
 
 ---
 

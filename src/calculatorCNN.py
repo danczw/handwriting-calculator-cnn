@@ -160,24 +160,20 @@ def imagen ():
     size=(28,28)
     image1 = image1.resize(size)
 
-    
     image1 = image1.convert('L')
     image1 = np.array(image1)
     image1 = image1.reshape(-1, 28, 28, 1)
     image1 = image1.astype('float32')
     image1 /= 255.0
 
-    
     predictions.append(np.argmax(model.predict(image1)))
     lbl2 = tk.Label(window, text=predictions[counter-1],font=('Arial Bold',20))
     lbl2.grid(column=3, row=10)
     
-
     xpoints=[]
     ypoints=[]
     x2points=[]
     y2points=[] 
-
 
 w = tk.Canvas(window, 
            width=canvas_width, 
@@ -192,31 +188,34 @@ def delete ():
            height=20,bg='gray95')
     w1.grid(column=3,row=10)
     
-
 def add():
     global operation
     global counter
     global digits
     digits=counter
     operation = 'add'
+
 def subtract():
     global operation
     global counter
     global digits
     digits=counter
     operation = 'subtract'
+
 def multiply():
     global operation
     global counter
     global digits
     digits=counter
     operation = 'multiply'
+
 def divide():
     global operation
     global counter
     global digits
     digits=counter
     operation = 'divide'
+
 def equals():
     digitone=''
     digittwo=''
@@ -244,6 +243,7 @@ def equals():
     lbl2.grid(column=3, row=10)
     predictions=[]
     counter=0
+
 def reset():
     global predictions
     global counter
@@ -280,6 +280,5 @@ button6.grid(column=3,row=12)
 
 button7 = tk.Button(window, text='Reset', width=25, command=reset)
 button7.grid(column=3,row=13)
-
 
 window.mainloop()
